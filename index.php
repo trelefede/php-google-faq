@@ -16,10 +16,10 @@
         "Perché il mio account è associato a un paese?" => [
 
             "Il tuo account è associato a un paese (o territorio) nei Termini di servizio per poter stabilire due cose:" => [
-                "1." => "La società consociata Google che offre i servizi, tratta le tue informazioni ed è responsabile del rispetto delle leggi sulla privacy vigenti. Generalmente Google offre i propri servizi per i consumatori tramite una delle due società seguenti:", 
-                            // "a." => "Google Ireland Limited, se gli utenti sono residenti nello Spazio economico europeo (paesi dell'Unione europea, oltre a Islanda, Liechtenstein e Norvegia) o in Svizzera.",
-                            // "b." => "Google LLC, con sede negli Stati Uniti, per il resto del mondo.",
-                "2." => "La versione dei termini che regola il nostro rapporto, che può variare in base alle leggi locali.",
+                "1.     La società consociata Google che offre i servizi, tratta le tue informazioni ed è responsabile del rispetto delle leggi sulla privacy vigenti. Generalmente Google offre i propri servizi per i consumatori tramite una delle due società seguenti:" => [
+                            "a.      Google Ireland Limited, se gli utenti sono residenti nello Spazio economico europeo (paesi dell'Unione europea, oltre a Islanda, Liechtenstein e Norvegia) o in Svizzera.",
+                            "b.     Google LLC, con sede negli Stati Uniti, per il resto del mondo."],
+                "2.     La versione dei termini che regola il nostro rapporto, che può variare in base alle leggi locali.",
                 ],
             "Tieni presente che i servizi Google sono fondamentalmente gli stessi a prescindere dalla società consociata che li offre o dal paese a cui è associato il tuo account."
         ],
@@ -37,21 +37,58 @@
     ];
 
     foreach ($questions as $question => $answers) {
+
         ?>
 
         <div>
             <h2> <?= $question ?> </h2>
 
         <?php
-        foreach ($answers as $index => $answer) {
-            if ($index === String ){
-                echo '<p>'. $index .'</p>';
-            }
-            echo '<p>'. $answer .'</p>';
 
-            // foreach ($answer as $number => $item){
-            //     echo '<p>'. $number . ' ' . $item .'</p>';
-            // }
+        foreach ($answers as $index => $answer) {
+            if(!is_int($index)){
+                echo '<p>'. $index .'</p>';
+            } else {
+                echo '<p>'. $answer .'</p>';
+            }
+
+            ?>
+
+            <ul>
+    
+            <?php
+        
+            foreach ($answer as $number => $item){
+                if(!is_int($number)){
+                    echo '<li>'. $number .'</li>';
+                } else {
+                    echo '<li>'. $item .'</li>';
+                }
+
+                ?>
+
+                <ul>
+    
+                <?php
+
+                foreach ($item as $letter => $value){
+                    echo '<li>'. $value .'</li>';
+                }
+
+                ?>
+
+                </ul>
+        
+                <?php
+    
+            }
+
+            ?>
+
+            </ul>
+    
+            <?php
+
         }
 
         ?>
@@ -63,3 +100,15 @@
 
 ?>
 
+
+<style>
+
+li{
+    list-style: none;
+}
+
+
+
+
+
+</style>
